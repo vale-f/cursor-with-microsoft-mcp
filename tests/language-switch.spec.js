@@ -1,43 +1,53 @@
 const { test, expect } = require('@playwright/test');
 
 test('Language switch from Spanish to English', async ({ page }) => {
-  // Go to the Spanish homepage
-  await page.goto('/es/');
+  await test.step('Go to the Spanish homepage', async () => {
+    await page.goto('/es/');
+  });
 
-  // Verify the Spanish heading is present
-  await expect(
-    page.getByRole('heading', { name: /Estamos construyendo un mundo abierto por diseño/ })
-  ).toBeVisible();
+  await test.step('Verify the Spanish heading is present', async () => {
+    await expect(
+      page.getByRole('heading', { name: /Estamos construyendo un mundo abierto por diseño/ })
+    ).toBeVisible();
+  });
 
-  // Hover over the menu or language icon to reveal the "English" link
-  await page.hover('img[alt="Language"].max-w-none');
+  await test.step('Hover over the language icon to reveal the English link', async () => {
+    await page.hover('img[alt="Language"].max-w-none');
+  });
 
-  // Now click the "English" link
-  await page.click('a[href="/en/"]');
+  await test.step('Click the English link', async () => {
+    await page.click('a[href="/en/"]');
+  });
 
-  // Verify the English heading is present
-  await expect(
-    page.getByRole('heading', { name: /We are building a world open by design where all knowledge is/ })
-  ).toBeVisible();
+  await test.step('Verify the English heading is present', async () => {
+    await expect(
+      page.getByRole('heading', { name: /We are building a world open by design where all knowledge is/ })
+    ).toBeVisible();
+  });
 });
 
 test('Language switch from English to Spanish', async ({ page }) => {
-  // Go to the English homepage
-  await page.goto('/en/');
+  await test.step('Go to the English homepage', async () => {
+    await page.goto('/en/');
+  });
 
-  // Verify the English heading is present
-  await expect(
-    page.getByRole('heading', { name: /We are building a world open by design where all knowledge is/ })
-  ).toBeVisible();
+  await test.step('Verify the English heading is present', async () => {
+    await expect(
+      page.getByRole('heading', { name: /We are building a world open by design where all knowledge is/ })
+    ).toBeVisible();
+  });
 
-  // Hover over the menu or language icon to reveal the "Spanish" link
-  await page.hover('img[alt="Language"].max-w-none');
+  await test.step('Hover over the language icon to reveal the Spanish link', async () => {
+    await page.hover('img[alt="Language"].max-w-none');
+  });
 
-  // Now click the "Spanish" link
-  await page.click('a[href="/es/"]');
+  await test.step('Click the Spanish link', async () => {
+    await page.click('a[href="/es/"]');
+  });
 
-  // Verify the Spanish heading is present
-  await expect(
-    page.getByRole('heading', { name: /Estamos construyendo un mundo abierto por diseño/ })
-  ).toBeVisible();
+  await test.step('Verify the Spanish heading is present', async () => {
+    await expect(
+      page.getByRole('heading', { name: /Estamos construyendo un mundo abierto por diseño/ })
+    ).toBeVisible();
+  });
 });
