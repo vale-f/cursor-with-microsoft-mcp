@@ -7,8 +7,10 @@ class HomePage {
   constructor(page) {
     this.page = page;
     this.languageIcon = 'img[alt="Language"].max-w-none';
+    this.newsIcon = "//a[@class=' labeled ' and text()='News']";
     this.englishLink = 'a[href="/en/"]';
     this.spanishLink = 'a[href="/es/"]';
+    this.blogButton = 'ul.submenu a[href="https://blog.okfn.org/"]';
     this.spanishHeading = /Estamos construyendo un mundo abierto por diseño/;
     this.englishHeading = /We are building a world open by design where all knowledge is/;
   }
@@ -25,6 +27,11 @@ class HomePage {
   async switchToSpanish() {
     await this.page.hover(this.languageIcon);
     await this.page.locator(this.spanishLink).click({ waitFor: 'load' });
+  }
+
+  async goToBlog() {
+    await this.page.hover(this.newsIcon);
+    await this.page.locator(this.blogButton).click({ waitFor: 'load' });
   }
 
   async expectSpanishHeading() {
